@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Summary</title>
+<style>
+table {
+margin-top: 10px;
+margin-bottom: 10px;
+width: 90%;
+max-width: 500px;
+border-collapse: collapse;
+}
+th, td {
+border: 1px solid #ddd;
+padding: 8px;
+}
+tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+details {
+border: 1px solid #aaa;
+border-radius: 4px;
+padding: 10px;
+width: 90%;
+max-width: 500px;
+background-color: #f9f9f9;
+box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+}
+summary {
+width: 90%;
+max-width: 500px;
+font-weight: bold;
+padding: 10px;
+background-color: #aaa;
+color: white;
+border-radius: 4px;
+list-style: none;
+}
+summary:hover {
+background-color: #aaa;
+}
+details[open] summary {
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+}
+details > p {
+margin: 0;
+padding: 10px;
+background-color: #fff;
+border-top: 1px solid #aaa;
+border-radius: 0 0 4px 4px;
+}
+a{
+text-decoration :none;
+color : #008000 ;
+}
+a:hover{
+text-decoration:underline;
+}
+p{
+margin-top:25px;
+text-align:center;
+font-size : 18px;
+}
+</style>
+</head>
+<body>
+<script>
+let storedData = sessionStorage.getItem('order');
+let parsedData =JSON.parse(storedData);
+for (let key in parsedData) {
+if (parsedData.hasOwnProperty(key)) {
+let contents = parsedData[key];
+// Extracting the necessary data
+let order = contents.filter(item => item.drug);
+let total = contents.find(item => item.Total).Total;
+let date = contents.find(item => item.date).date;
+let wholesaler = contents.find(item => item.wholesaler).wholesaler;
+document.write(`
+<details>
+<summary>${wholesaler} | ${date}</summary>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Quantity</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+${order.map((item, index) => `
+<tr style="background-color: ${index % 2 === 1 ? '#f2f2f2' : 'white'};">
+<td>${item.drug}</td>
+<td>${item.quantity}</td>
+<td>${item.price.toFixed(2)}</td>
+</tr>
+`).join('')}
+</tbody>
+</table>
+<p>Total: ₵${total.toFixed(2)}</p>
+</details>
+<p>It works!! <a href='index.html?openModal=true'>Register now!</a> </p>
+`);}} 
+</script>
+</body>
+</html>

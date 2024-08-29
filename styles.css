@@ -1,0 +1,113 @@
+summary{
+  padding: 5px 20px;
+  background-color: #17a2b8;
+  color: #fff ;
+  border: none;
+  transition: background-color 0.3s;
+}
+details p{
+padding-left: 4px;
+margin-bottom :15px;
+}
+#info p{
+margin-right : 10px;
+}
+.section {
+padding :25px 0 0 2%;
+}
+body {
+font-size: 16px;
+margin: 0;
+}
+#order-section input {
+width: 300px;
+margin-top: 25px;
+height: 32px;
+}
+#quantity-input{
+display:none;
+}
+.button{
+margin-top :25px;
+}
+section #quantity{
+width : 65px;
+}
+#drug-select{
+display: none;
+}
+table {
+border-collapse: collapse;
+margin-bottom:25px ;
+width:90%;
+max-width :500px;
+}
+
+th,td{
+border: 1px solid black;
+padding: 5px;
+text-align: left;
+}
+
+section thead{
+background-color: #d9d9d9;
+text-align : centre;
+}
+tr:nth-child(even) {
+background-color: #b9b9b9;
+}
+#tableInfo,#table,#quantity-input,#priceInput,#add,#totalResults,#details
+,#Send,#userDetails,#labelForUserDetails{
+  display : none;
+}
+#totalResults {
+margin-top : 20px;
+}
+.tableInfo,#info {
+background-color:#B3E7E3;
+color: black;
+padding: 2px;
+width: 300px;
+margin-bottom: 5px;
+}
+#totalResults{
+padding-bottom: 10px;
+}
+.input{
+width : 200px;
+height: 35px;
+margin-top : 20px;
+}
+#send{
+margin-bottom: 15px;
+}
+.section{
+margin-top:35px ;
+}
+#checkOrder{
+display: none;
+}
+.last{
+margin: 20px;
+}
+.lastlast{
+margin-bottom: 200px;
+}
+@media only screen and (min-width: 540px) {
+ html body section {
+  width:600px;
+  font-size : 22px;
+     }
+html section #quantity{
+width : 80px;
+} 
+#order-section input {
+width: 400px;
+margin-top: 40px;
+height: 40px;
+}
+html body #info{
+  width : 500px;
+  font-size : 20px;
+}
+}
