@@ -60,11 +60,6 @@ order,and have it delivered to your shop.</li>
 <input id="contact" name="contact" class="input" type="tel" placeholder="Contact" required>
 <input name="Location" id="location" class="input" type="text" placeholder="Location" required>
 <p>
-<div id="checkbox">
-<input type="checkbox" id="useLocation">
-<label for="useLocation">GPS location</label>
-<p class="tableInfo">Use GPS if you are in your shop now.</p> 
-</div>
 <button id="submit" class="btn btn-lg btn-secondary">Join the family</button>
 </div>
 </div>
@@ -103,7 +98,7 @@ Why you'll love Banty
 </details><br>
 <details>
 <summary>What if I don't trust you?</summary>
-<p>We can understand. We will deliver the drugs to you before you make payment in that case.</p></details><br>
+<p>We can understand. We will deliver the drugs to you before you make payment in that case. Or simply send the the wholesale shop your cash via wire.</p></details><br>
 
 <details>
 <summary>What are your working hours?</summary>
@@ -309,7 +304,6 @@ footer > div{
   width:35px;
  }
 }
-
 </style>
 <script>document.addEventListener("DOMContentLoaded",function(){
     //Function to get URL parameters
@@ -319,40 +313,17 @@ return urlParams.get(name);
 }
 if (getUrlParameter('openModal') === 'true'){
 document.getElementById('openModalButton').click();}});
-
-const useLocationCheckbox = document.getElementById('useLocation');
-useLocationCheckbox.addEventListener('change', function() {
-  if (this.checked) {
-    getLocation();}});
-function getLocation() {
- if ("geolocation" in navigator) {
-   navigator.geolocation.getCurrentPosition(function(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-     sessionStorage.setItem('lat',latitude);
-     sessionStorage.setItem('long',longitude);
-    }, function(error) {
-alert("Error getting location: " + error.message);});
-} else {
-alert("Geolocation is not supported by this browser.");
- }
-}
-
 const submitButton = document.getElementById("submit"); 
 submitButton.addEventListener('click',myFunction);
-
 function myFunction() {
-const lat =  sessionStorage.getItem('lat');
-const long = sessionStorage.getItem('long');
-const gps = lat + ',' + long;
 const shopName = document.getElementById('shopName').value;
 const shopLocation = document.getElementById('location').value;
 const contact = document.getElementById('contact').value;
 if (shopName && shopLocation && contact) {
     const data = JSON.stringify({
+        shop : shopName,
         contact: contact,
-        location: shopLocation,
-        gps: gps
+        location: shopLocation
     });
 fetch("https://submit-form.com/nupeAo2NB", {
 method: "POST",
